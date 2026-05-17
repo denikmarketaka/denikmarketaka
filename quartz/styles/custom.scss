@@ -1,3 +1,63 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+footer {
+  margin: 5rem auto 2rem;
+  padding: 2rem 2.5rem;
+  max-width: 480px;
+  text-align: center;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 2px;
+  position: relative;
+  
+  &::before {
+    content: "✦";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--light);
+    padding: 0 12px;
+    color: var(--gray);
+    font-size: 1rem;
+  }
+  
+  .manifest {
+    font-family: var(--headerFont);
+    font-size: 1.1em;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+  
+  .contact {
+    margin: 1.2rem 0;
+    
+    a {
+      display: inline-block;
+      color: var(--secondary);
+      text-decoration: none;
+      font-size: 0.95em;
+      padding: 6px 14px;
+      border: 1px solid var(--secondary);
+      border-radius: 2px;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background: var(--secondary);
+        color: var(--light);
+      }
+    }
+  }
+  
+  .copyright {
+    font-size: 0.75em;
+    color: var(--gray);
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--lightgray);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+}

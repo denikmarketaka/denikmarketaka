@@ -1,6 +1,8 @@
 ---
-title: Welcome to Quartz
+title: Můj skromný deník
 ---
 
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+Píše Ondřej. Sedm let v marketingu, vyhoření, krize, programování.
+Píšu z místa nejistoty, ne z pódia.
+
+[Všechny posty](/Posts)
