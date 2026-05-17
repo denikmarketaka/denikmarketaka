@@ -2,5 +2,5 @@
 title: Můj skromný deník
 ---
 
-Píše Ondřej. Sedm let v marketingu, vyhoření, krize, programování.
-Píšu z místa nejistoty, ne z pódia.
+Sedm let v marketingu, vyhoření, krize, programování...
+...několik vyšších jednotek měsíců se potýkám s vekou dávkou introspekce. Až jsem došel k rozhodnutí založit anonymní deník mé cesty. Bez struktury, bez tlaku, bez edičního plánu, bez očekávání. Syrově a možná někdy i surově.
