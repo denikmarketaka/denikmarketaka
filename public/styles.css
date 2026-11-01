@@ -1,0 +1,66 @@
+:root {
+  --bg: #f4f3ef;
+  --fg: #1b1b1a;
+  --muted: #6b6a65;
+  --glow: rgb(0 0 0 / 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121211;
+    --fg: #ecebe6;
+    --muted: #9b9a94;
+    --glow: rgb(255 255 255 / 0.08);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100%;
+  margin: 0;
+  padding: 16px;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  text-align: center;
+}
+
+/* Záře existuje jen se skriptem, který ji posouvá; bez něj je stránka prostě čistá. */
+.js body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    32rem circle at var(--x, 50%) var(--y, 50%),
+    var(--glow),
+    transparent 70%
+  );
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.25rem, 9vw, 6rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+p {
+  margin: 1.25rem 0 0;
+  color: var(--muted);
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}

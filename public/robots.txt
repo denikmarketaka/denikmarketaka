@@ -1,0 +1,3 @@
+# Nic neblokovat: vyhledávač musí stránku načíst, aby viděl noindex.
+User-agent: *
+Allow: /
