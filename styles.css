@@ -1,0 +1,326 @@
+:root {
+  --bg: #050a24;
+  --surface: #0b1338;
+  --fg: #f4f6ff;
+  --muted: #a3acd6;
+  --rule: rgb(163 172 214 / 0.18);
+  --accent: #3d6bff;
+  --danger: #ff4d6d;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  color: var(--fg);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  overflow: hidden;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at 50% 40%, #000, transparent 70%);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -30vmin;
+  left: 50%;
+  width: 120vmin;
+  height: 70vmin;
+  border-radius: 50%;
+  background: var(--accent);
+  filter: blur(110px);
+  opacity: 0.5;
+  transform: translateX(-50%);
+}
+
+/* Stejná mřížka jako v pozadí, jen jasnější a viditelná kolem kurzoru. */
+.spotlight {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-image:
+    linear-gradient(rgb(124 156 255 / 0.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(124 156 255 / 0.55) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(260px circle at var(--x, 50%) var(--y, 50%), #000, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.spotlight.is-on {
+  opacity: 1;
+}
+
+.tag {
+  margin: 0 0 28px;
+  padding: 7px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: rgb(11 19 56 / 0.7);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(3rem, 11vw, 7.5rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.lead {
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 13px;
+  text-decoration: none;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.scroll-hint:hover {
+  color: var(--fg);
+}
+
+/* Výška sekce určuje, kolik se dá scrollovat, a tím délku hry. */
+.game {
+  height: calc(var(--track) + 100vh);
+  height: calc(var(--track) + 100svh);
+}
+
+.game-stage {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 760px;
+  height: 100vh;
+  height: 100svh;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.game-hud {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.game-hud strong {
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.game-board {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  background: var(--surface);
+}
+
+.game-board canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.game-result {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background: rgb(5 10 36 / 0.6);
+  text-align: center;
+}
+
+.game-verdict {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.game-score {
+  font-size: clamp(2.5rem, 9vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.game-best {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.game-again {
+  margin-top: 16px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.game-again:hover {
+  background: #5a82ff;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @keyframes appear {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+
+  /* Pod .js, ať animace startující z opacity 0 nezávisí na načtení skriptu. */
+  .js .tag,
+  .js h1,
+  .js .lead {
+    animation: appear 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .js h1 {
+    animation-delay: 0.08s;
+  }
+
+  .js .lead {
+    animation-delay: 0.16s;
+  }
+
+  .hero::after {
+    animation: breathe 7s ease-in-out infinite alternate;
+  }
+
+  @keyframes breathe {
+    to {
+      opacity: 0.75;
+      transform: translateX(-50%) scale(1.12);
+    }
+  }
+
+  .scroll-arrow {
+    display: inline-block;
+    animation: bob 1.4s ease-in-out infinite alternate;
+  }
+
+  @keyframes bob {
+    to {
+      transform: translateY(5px);
+    }
+  }
+
+  .game-result:not([hidden]) .game-score {
+    animation: pop 0.5s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+  }
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+  }
+
+  /* Průhledný text jen tam, kde gradient opravdu vykreslí; jinde zůstane plná barva. */
+  @supports (background-clip: text) or (-webkit-background-clip: text) {
+    h1 {
+      background: linear-gradient(100deg, var(--fg) 40%, #9db4ff 50%, var(--fg) 60%) 0 0 / 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .js h1 {
+      animation:
+        appear 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.08s both,
+        shine 6s linear 1s infinite;
+    }
+
+    @keyframes shine {
+      from {
+        background-position: 100% 0;
+      }
+
+      to {
+        background-position: 0% 0;
+      }
+    }
+  }
+}
